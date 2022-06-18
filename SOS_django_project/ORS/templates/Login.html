@@ -1,0 +1,102 @@
+
+{% include "./header.html"%}
+
+<head>
+   
+    
+    <title>login</title>
+    
+</head>
+<body style="background-color: hsl(0,0%,96%); background-image:url(https://images.pexels.com/photos/305821/pexels-photo-305821.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940); background-repeat:no-repeat;width: 100%; background-size: cover">
+    <script type="text/javascript">
+        $(function () {
+            setTimeout(function () {
+                $("#timeout").fadeOut(1000);
+            }, 2000)
+    
+        })
+    </script>
+        
+    <br>
+{% if request.session.msg != None %}
+<h3 style="color:red;text-align: center;font-family: bold;" id="timeout">{{ request.session.msg }}</h3>
+{% endif %} 
+<br>
+{% if form.out %}
+<h3 style="color:green;text-align: center;font-family: bold;">{{ form.out }}</h3>
+{% endif %} 
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4" >
+                <div class="modal-content" style="background-color:rgba(255, 255, 255, 0.212);">
+                    <div class="card-header ">
+                        <h2 class="modal-title" style="padding-left: 143px; font-family: bold; font-size: xx-large">LogIn</h2>
+                    </div>
+
+
+                    {% if form.error  %}
+                                <p style="color: red; text-align: center;"> {{form.message}}</p>
+                                {% else %}
+                                <p style="color:rgb(255, 0, 0) ;text-align: center;"> {{form.message}}</p>
+                                {% endif %}
+                            <form  method="POST" novalidate>
+                                <div class="modal-body">
+                                    <div class="form-group row">
+                                        <label class="col-md-4 form-control-label">Login <span style="color: red;"> * </span> </label>
+                                        <div class="col-md-8">
+                                            <input class="form-control" name="login_id" value="{{form.login_id}}"
+                                                placeholder="Enter your Login ID" type="email">
+                                            <span style="color: red;"> {{form.inputError.login_id}} </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-md-4 form-control-label">Password<span style="color: red;">*</span> </label>
+                                        <div class="col-md-8">
+                                            <input class="form-control" name="password" value="{{form.password}}" type="password"
+                                                placeholder="Enter your Password">
+                                            <span style="color: red;"> {{form.inputError.password}} </span>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <label class="col-md-2 control-label"></label>
+                                        <div class="col-md-2">
+                                            <button type="submit" value="SignIn" class="btn btn-primary">Login
+
+                                            </button>
+                                        </div>
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-2">
+                                                <a class="btn btn-success" href="/ORS/Registration">SignUp</a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                    <div class="row">
+                                        <div class="col-md-4"></div>
+                                            <a href="/ORS/ForgetPassword" style="color: rgb(0, 0, 0);">Forget Password</a>
+                                        <div class="col-md-4"></div>
+
+
+                                    </div>
+
+
+                            </form>
+                        </div>
+                   
+                </div>
+                </div>
+    
+        </div>        
+        
+    </div>
+    
+    <div class="col-md-4"></div>
+    
+
+{% include  "./Footer.html"%}
+</body>
+</html>
